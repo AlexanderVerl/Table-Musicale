@@ -13,8 +13,6 @@
 #define NUMPIXELS 48
 #define NUMCAPTEUR 16
 
-
-
 // Objets
 PCF8575 PCF(0x20);
 Adafruit_NeoPixel pixels(NUMPIXELS, NEOPIXELPIN, NEO_GRB + NEO_KHZ800);
@@ -22,25 +20,23 @@ Adafruit_NeoPixel pixels(NUMPIXELS, NEOPIXELPIN, NEO_GRB + NEO_KHZ800);
 //Variables globales
 int Capteurs;
 
-
 //////////////////////////////////////////////////////////////////
 void setup() {
   Serial.begin(115200);
-  while(!Serial); // ATTENTION BLOQUANT !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  delay(1500);
+  // while(!Serial); // ATTENTION BLOQUANT !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //delay(1500);
   Serial.println("Init project");
   // while(!Serial); // ATTENTION BLOQUANT !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-   setupCustomI2S(1, 3, 19);  // pin CLK, LRC, data
+  setupCustomI2S(1, 3, 19);  // pin CLK, LRC, data
 
-/*
   Wire.begin();  //Initialisation du bus I2C
   PCF.begin();
 
   pixels.begin();
-}*/
-  while(1);
 }
+//while(1);
+//}
 
 void loop() {
   //playNote(0, 250, 100);  // Jouer une note
@@ -55,15 +51,17 @@ void loop() {
 
     Capteurs = PCF.read16();
     if ((Capteurs & (0b0000000000000001 << i)) == 0) {
-      pixels.setPixelColor(i*3, pixels.Color(0, 150, 0));
-      pixels.setPixelColor((i*3)+1, pixels.Color(0, 150, 0));
-      pixels.setPixelColor((i*3)+2, pixels.Color(0, 150, 0));
+      pixels.setPixelColor(i * 3, pixels.Color(0, 150, 0));
+      pixels.setPixelColor((i * 3) + 1, pixels.Color(0, 150, 0));
+      pixels.setPixelColor((i * 3) + 2, pixels.Color(0, 150, 0));
       pixels.show();
+      playNote(500, 250, 50);
     } else {
-      pixels.setPixelColor(i*3, pixels.Color(0, 0, 0));
-      pixels.setPixelColor((i*3)+1, pixels.Color(0, 0, 0));
-      pixels.setPixelColor((i*3)+2, pixels.Color(0, 0, 0));
+      pixels.setPixelColor(i * 3, pixels.Color(0, 0, 0));
+      pixels.setPixelColor((i * 3) + 1, pixels.Color(0, 0, 0));
+      pixels.setPixelColor((i * 3) + 2, pixels.Color(0, 0, 0));
       pixels.show();
+      playNote(0, 250, 100);
     }
   }
 
