@@ -32,7 +32,6 @@ void setup() {
 
   Wire.begin();  //Initialisation du bus I2C
   PCF.begin();
-
   pixels.begin();
 }
 //while(1);
@@ -47,8 +46,14 @@ void loop() {
   // playNote(500, 250, 50);
 
   // playNote(500, 1000, 100);
-  for (int i = 0; i < NUMCAPTEUR; i++) {
 
+  /*  playNote(500, 250, 50);
+  delay(100);
+  playNote(0, 250, 100);
+    delay(100);*/
+
+
+  for (int i = 0; i < NUMCAPTEUR; i++) {
     Capteurs = PCF.read16();
     if ((Capteurs & (0b0000000000000001 << i)) == 0) {
       pixels.setPixelColor(i * 3, pixels.Color(0, 150, 0));
