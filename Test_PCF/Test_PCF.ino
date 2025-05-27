@@ -12,7 +12,6 @@ void setup() {
   PCF.begin();
 }
 
-
 void loop() {
   Capteurs = PCF.read16();
   Serial.print("Capteurs =  ");
