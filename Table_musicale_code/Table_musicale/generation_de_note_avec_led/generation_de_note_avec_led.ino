@@ -12,7 +12,7 @@
 
 //Constantes
 #define NEOPIXELPIN 15
-#define NUMPIXELS 48
+#define NUMPIXELS 57
 #define NUMCAPTEUR 16
 
 const float NOTES[] = {    //Les frequences des notes
