@@ -2,7 +2,7 @@
 #include <math.h>
 
 const i2s_port_t i2sPort = I2S_NUM_0;
-bool i2sInitialized = false;
+bool i2sInitialized = false;         //only true or false
 float sineWaveTable[WAVETABLE_SIZE];
 volatile bool isPlaying = false;
 float currentFrequency = 0;
@@ -10,8 +10,8 @@ int currentDuration = 0;
 int currentVolume = 0;
 
 void initSineTable() {
-  for (int i = 0; i < WAVETABLE_SIZE; i++) {
-    sineWaveTable[i] = sin(2 * M_PI * i / WAVETABLE_SIZE);
+  for (int i = 0; i < WAVETABLE_SIZE; i++) {     //512 symbals
+    sineWaveTable[i] = sin(2 * M_PI * i / WAVETABLE_SIZE);   //calculating angle 0-2Pi 
   }
 }
 
@@ -19,7 +19,7 @@ void setupCustomI2S(int bckPin, int lrckPin, int dataOutPin) {
   initSineTable();
 
   i2s_config_t i2sConfig = {
-    .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_TX),
+    .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_TX),              //.pour initialisation de structure 
     .sample_rate = SAMPLE_RATE,
     .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
     .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,

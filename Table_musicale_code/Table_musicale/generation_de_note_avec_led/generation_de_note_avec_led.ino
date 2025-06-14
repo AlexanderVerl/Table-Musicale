@@ -15,7 +15,8 @@
 #define NUMPIXELS 57
 #define NUMCAPTEUR 16
 
-const float NOTES[] = {    //Les frequences des notes
+const float NOTES[] = {
+  //Les frequences des notes
   261.63, 293.66, 329.63,  // C4, D4, E4
   349.23, 392.00, 440.00,  // F4, G4, A4
   493.88, 523.25, 587.33,  // B4, C5, D5
@@ -49,7 +50,7 @@ void loop() {
     pixels.setPixelColor(i * 3 + 2, color);
 
     if (isActive && !isPlaying) {
-      playNote(NOTES[i], 250, 150);  
+      playNote(NOTES[i], 250, 150);
     }
   }
 
